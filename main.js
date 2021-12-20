@@ -18,14 +18,14 @@ let page;
         args: ["--start-maximized"],
     })
     page = await browser.newPage();
-      await page.goto("https://www.wikipedia.org/");
-     await page.click(".central-featured-lang.lang1")
-    await page.click(".portal-hright.portal-vbot")
+      await page.goto("https://www.wikipedia.org/"); //open wiki tab
+     await page.click(".central-featured-lang.lang1") //English
+    await page.click(".portal-hright.portal-vbot")  
     
-    await page.click('a[title="Wikipedia:Contents/A–Z index"]');
+    await page.click('a[title="Wikipedia:Contents/A–Z index"]'); //a-z index
     
     await page.waitFor(2000);
-      await page.click('a[title="Special:AllPages/J"]');
+      await page.click('a[title="Special:AllPages/J"]'); //J letter
       await page.waitFor(2000);
       await page.click('a[title="J"]');
       let url = await page.url();
@@ -36,7 +36,7 @@ let page;
       });
       
       function file(html){
-        const $ = cheerio.load(html);
+        const $ = cheerio.load(html); //load html
         
         var obj = [];
         const data = $('.mw-parser-output h2');
@@ -55,7 +55,6 @@ let page;
         writeToFile(obj);
       }
 })()
-
 
   function writeToFile(obj){
     let newWorkbook = xlsx.utils.book_new();
